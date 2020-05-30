@@ -1,0 +1,26 @@
+public class Solution {
+    public String replaceSpace(StringBuffer str) {
+        int spaceNum=0;
+        int oldLength=str.length();
+        for(int i=0; i<oldLength; i++){
+            if(str.charAt(i)==' '){
+                spaceNum++;
+            }
+        }
+        int newLength=oldLength+2*spaceNum;
+        str.setLength(newLength);
+        int oldIndex=oldLength-1;
+        
+        int newIndex=newLength-1;
+        for(;oldIndex>=0&&oldIndex<newLength;oldIndex--){
+            if(str.charAt(oldIndex)==' '){
+                str.setCharAt(newIndex--,'0');
+                str.setCharAt(newIndex--,'2');
+                str.setCharAt(newIndex--,'%');
+            }else{
+                str.setCharAt(newIndex--,str.charAt(oldIndex));//不需要oldIndex再自减，因为循环代替了
+            }
+        }
+        return str.toString();
+    }
+}
