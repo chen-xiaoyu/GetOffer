@@ -1,0 +1,26 @@
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
+        return conTree(pre,0,pre.length-1,in,0,in.length-1);
+    }
+    
+    public TreeNode conTree(int [] pre,int preleft, int preright, int [] in, int inleft, int inright){
+        if(preleft>preright || inleft>inright){ //判断边界条件
+            return null;
+        }
+        TreeNode root = new TreeNode(pre[preleft]); //建立初始根节点
+        for(int i=inleft;i<=inright;i++){//用中序遍历区分左右子树
+            if(pre[preleft] == in[i]){
+                root.left = conTree(pre, preleft+1, preleft+i-inleft, in, inleft, i-1);
+                root.right = conTree(pre, preleft+i+1-inleft, preright, in, i+1, inright);
+            }
+        }
+        return root;
+    }
+}
