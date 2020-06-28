@@ -1,0 +1,28 @@
+public class Solution {
+    public int movingCount(int threshold, int rows, int cols)
+    {
+        if(threshold<0){
+            return 0;
+        }
+        int flag[][]= new int[rows][cols];
+        return count(0,0, rows, cols, threshold, flag);
+    }
+    
+    private int count(int row, int col, int rows, int cols, int threshold, int[][] flag){
+        if(row<0 || row>=rows || col<0 || col>=cols || flag[row][col] ==1 || getSum(row)+getSum(col)>threshold) return 0;
+        flag[row][col]=1;
+        return count(row+1, col, rows, cols, threshold, flag)+
+            count(row-1, col, rows, cols, threshold, flag)+
+            count(row, col+1, rows, cols, threshold, flag)+
+            count(row, col-1, rows, cols, threshold, flag)+1;
+    }
+    
+    private int getSum(int i){ //计算出坐标的值,可能是大数问题
+        int sum=0;
+        do{
+            sum+=i%10;
+        }
+        while((i=i/10)>0); //使用do while 从大到小获取坐标数值
+        return sum;
+    }
+}
