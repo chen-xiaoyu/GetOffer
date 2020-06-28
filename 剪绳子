@@ -1,0 +1,16 @@
+public class Solution {
+    public int cutRope(int target) {
+        if(target<=3){
+            return target-1;
+        }
+        if(target==4){
+            return 4;
+        }
+        int sum=0;
+        while(target>3){
+            target-=3;
+            sum=target*3;
+        }
+        return sum;
+    }
+}
