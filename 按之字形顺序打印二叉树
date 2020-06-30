@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+import java.util.Stack;
+/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
+        ArrayList<ArrayList<Integer> > list =new ArrayList<ArrayList<Integer>>();
+        if(pRoot==null){
+            return list;
+        }
+        Stack<TreeNode> s1=new Stack<TreeNode>();
+        Stack<TreeNode> s2=new Stack<TreeNode>();
+        s1.add(pRoot);
+        while(!s1.isEmpty()||!s2.isEmpty()){
+            if(!s1.isEmpty()){
+                ArrayList<Integer> alist1=new ArrayList<Integer>();
+            while(!s1.isEmpty()){
+                TreeNode p1=s1.pop();
+                alist1.add(p1.val);
+                if(p1.left!=null){
+                    s2.add(p1.left);
+                }
+                if(p1.right!=null){
+                    s2.add(p1.right);
+                }
+            }
+            list.add(alist1);
+        }
+        else{
+                ArrayList<Integer> alist2=new ArrayList<Integer>();
+            while(!s2.isEmpty()){
+                TreeNode p2=s2.pop();
+                alist2.add(p2.val);
+                if(p2.right!=null){
+                    s1.add(p2.right);
+                }
+                if(p2.left!=null){
+                    s1.add(p2.left);
+                }
+            }
+            list.add(alist2);
+        }
+      }
+      return list;
+   }
+}
