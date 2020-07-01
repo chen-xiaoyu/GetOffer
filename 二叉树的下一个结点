@@ -1,0 +1,32 @@
+/*
+public class TreeLinkNode {
+    int val;
+    TreeLinkNode left = null;
+    TreeLinkNode right = null;
+    TreeLinkNode next = null;
+
+    TreeLinkNode(int val) {
+        this.val = val;
+    }
+}
+*/
+public class Solution {
+    public TreeLinkNode GetNext(TreeLinkNode pNode)
+    {
+        if(pNode==null){
+            return null;
+        }
+        if(pNode.right!=null){ //当前结点右孩子结点，那么下一节点就是：右孩子结点的最左孩子结点,如果右孩子结点没有左孩子就是自己
+            pNode=pNode.right;
+            while(pNode.left!=null){
+                pNode=pNode.left;
+            }
+            return pNode;
+        }
+        while(pNode.next !=null){  //当前结点是父亲结点的左/右孩子
+            if(pNode.next.left==pNode) return pNode.next;当前结点是父亲结点的左
+            pNode=pNode.next;//右孩子
+        }
+        return null; //最尾的结点
+    }
+}
