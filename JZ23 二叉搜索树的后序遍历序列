@@ -18,7 +18,7 @@ public class Solution {
         boolean left = true;
         boolean right = true;
         if(i>0){ //递归判断左右子树是否符合要求
-             left =VerifySquenceOfBST(Arrays.copyOfRange(sequence,0,i));
+             left =VerifySquenceOfBST(Arrays.copyOfRange(sequence,0,i)); //用到arrays.copyOfRange()函数，其中，最后一个序号是不包含在内的。
         }
         if(i<length-1){
             right = VerifySquenceOfBST(Arrays.copyOfRange(sequence,i,length-1));
