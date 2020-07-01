@@ -1,0 +1,44 @@
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        boolean result= false;
+        if(root1 == null || root2 ==null){ //边界条件
+            return false;
+        }
+        if(root1.val == root2.val){ // 寻找到满足条件的结点
+            result = DoHaveSubTree(root1,root2);
+        }
+        if(!result){
+            result = HasSubtree(root1.left, root2);
+        }
+        if(!result){
+            result = HasSubtree(root1.right, root2);
+        }
+        return result;
+    }
+    public boolean DoHaveSubTree(TreeNode root1,TreeNode root2){
+        if(root2==null){ //判断子结构是否为空
+            return true;
+        }
+        if(root1==null){ //若子结构不为空，而root1为空，则返回false
+            return false;
+        }         
+        if(root1.val != root2.val){ //判断结点值是否相同
+            return false;
+        }
+        return DoHaveSubTree(root1.left,root2.left)&&DoHaveSubTree(root1.right,root2.right); //左右结点同时满足条件才可
+    }
+}
+
