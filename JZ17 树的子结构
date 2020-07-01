@@ -14,7 +14,7 @@ public class TreeNode {
 public class Solution {
     public boolean HasSubtree(TreeNode root1,TreeNode root2) {
         boolean result= false;
-        if(root1 == null || root2 ==null){ //边界条件
+        if(root1 == null || root2 ==null){ //边界条件,只要存在一个为null，则返回false
             return false;
         }
         if(root1.val == root2.val){ // 寻找到满足条件的结点
