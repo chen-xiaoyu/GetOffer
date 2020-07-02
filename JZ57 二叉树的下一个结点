@@ -16,16 +16,19 @@ public class Solution {
         if(pNode==null){
             return null;
         }
-        if(pNode.right!=null){ //当前结点右孩子结点，那么下一节点就是：右孩子结点的最左孩子结点,如果右孩子结点没有左孩子就是自己
+        if(pNode.right!=null){ //下一个结点为当前结点的右孩子结点，那么下一节点就是：右孩子结点的最左孩子结点,如果右孩子结点没有左孩子就是自己
             pNode=pNode.right;
             while(pNode.left!=null){
                 pNode=pNode.left;
             }
             return pNode;
         }
+        
         while(pNode.next !=null){  //当前结点是父亲结点的左/右孩子
-            if(pNode.next.left==pNode) return pNode.next;当前结点是父亲结点的左
-            pNode=pNode.next;//右孩子
+            if(pNode.next.left==pNode) return pNode.next;//当前结点是父亲结点的左孩子结点，next是沿着二叉树线段找的
+            pNode=pNode.next;//如果一个节点没有右子树，并且它还是它父节点的右子节点的话，那么我们可以看着上面这幅图，
+            //假定一个符合情况的节点是目标节点（比如说 i），我们可以沿着指向父节点的指针一直向上遍历，直到找到一个是它父节点的左子节点的节点。
+            //如果这样的节点存在的话，那么这个节点的父节点就是我们要找的下一个节点。
         }
         return null; //最尾的结点
     }
