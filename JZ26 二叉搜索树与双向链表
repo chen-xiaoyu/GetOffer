@@ -1,0 +1,33 @@
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+    
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    TreeNode leftNode = null;
+    TreeNode rightNode = null;
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        if(pRootOfTree==null){
+            return null;
+        }
+        Convert(pRootOfTree.left);
+        if(rightNode==null){
+            leftNode = rightNode = pRootOfTree;
+        }else{
+            //把根节点插入到双向链表右边，rightHead向后移动
+            rightNode.right = pRootOfTree;
+            pRootOfTree.left = rightNode;
+            rightNode = pRootOfTree;
+        }
+        Convert(pRootOfTree.right);
+        return leftNode;
+    }
+}
