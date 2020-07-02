@@ -1,0 +1,19 @@
+import java.lang.Math;
+public class Solution {
+    private boolean isBalanced=true;
+    public boolean IsBalanced_Solution(TreeNode root) {
+        getDepth(root);
+        return isBalanced;
+    }
+    private int getDepth(TreeNode root){//返回类型为树的深度
+        if(root==null){
+            return 0;
+        }
+        int nleft=getDepth(root.left);
+        int nright=getDepth(root.right);
+        if(Math.abs(nleft-nright)>1){//绝对值判断
+            isBalanced=false;
+        }
+        return Math.max(nleft,nright)+1;
+    }
+}
