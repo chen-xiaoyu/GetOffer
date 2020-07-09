@@ -11,9 +11,10 @@ public class TreeNode {
 
 }
 */
+//递归和2个全局遍历
 public class Solution {
     TreeNode leftNode = null;
-    TreeNode rightNode = null;
+    TreeNode rightNode = null;//全局变量
     public TreeNode Convert(TreeNode pRootOfTree) {
         if(pRootOfTree==null){
             return null;
