@@ -1,0 +1,25 @@
+public class Solution {
+    public int LastRemaining_Solution(int n, int m) {
+        if(n<1 || m<1){
+            return -1;
+        }
+        int[] array= new int[n];
+        int left=n; int number=-1; int step=0;
+        while(left>0){
+            number++;
+            if(number>=n){
+                number=0;
+            }
+            if(array[number]==-1){
+                continue;
+            }
+            step++;
+            if(step==m){
+                array[number]=-1;
+                step = 0;
+                left--;
+            }
+        }
+        return number;
+    }
+}
