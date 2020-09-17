@@ -1,0 +1,25 @@
+public class Solution {
+    public String LeftRotateString(String str,int n) {
+        if(str==null ||str.length() ==0||n<=0){
+            return str;
+        }
+        //位数太长
+        if(n>=str.length()){
+            n=n%str.length();
+        }
+        char[] r = str.toCharArray();
+        reverse(r,0,n-1);
+        reverse(r,n,str.length()-1);
+        reverse(r,0,str.length()-1);
+        return new String(r);
+    }
+    private void reverse(char[] r, int begin, int end){
+        while(begin<end){
+            char temp = r[begin];
+            r[begin] = r[end];
+            r[end] = temp;
+            begin++;
+            end--;
+        }
+    }
+}
