@@ -1,0 +1,24 @@
+import java.util.HashMap;
+
+public class Solution {
+    public int FirstNotRepeatingChar(String str) {
+        HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+        for(int i=0; i<str.length();i++){
+            char c = str.charAt(i);
+            if(map.containsKey(c)){
+                int times=map.get(c);
+                times++;
+                map.put(c, times);
+            }else{
+                map.put(c, 1);
+            }
+        }
+        for(int j=0; j<str.length();j++){
+            char c = str.charAt(j);
+            if(map.get(c)==1){
+                return j;
+            }
+        }
+        return -1;
+    }
+}
