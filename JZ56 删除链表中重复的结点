@@ -1,0 +1,32 @@
+/*
+ public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+*/
+public class Solution {
+    public ListNode deleteDuplication(ListNode pHead)
+    {
+        ListNode head= new ListNode(0);
+        head.next=pHead; //设置前节点
+        ListNode pre =head;
+        ListNode last =head.next; //变动的点，用于寻找重复的节点
+        while(last!=null){
+            if(last.next!=null && last.val==last.next.val){
+                while(last.next!=null && last.val==last.next.val){
+                    last=last.next; //找到全部重复的值
+                }
+                pre.next=last.next;
+                last=last.next;
+            }else{
+                pre=pre.next;
+                last=last.next;
+            }
+        }
+        return head.next;
+    }
+}
