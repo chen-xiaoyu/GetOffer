@@ -1,0 +1,28 @@
+import java.util.*;
+public class Solution {
+    public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        if(k>input.length || k==0 || k<0){
+            return list;
+        }
+        PriorityQueue<Integer> result = new PriorityQueue<Integer>(k, new Comparator<Integer>(){
+            @Override//重写compare方法，采用大根堆的形式
+            public int compare(Integer o1, Integer o2){
+                return o2.compareTo(o1);
+            }
+        });
+        for(int i=0;i<input.length; i++){
+            if(result.size()!= k){
+                result.offer(input[i]);
+            }else if(input[i]<result.peek()){
+                Integer temp= result.poll();
+                temp = null;
+                result.offer(input[i]);
+            }
+        }
+        for(Integer integer: result){
+            list.add(integer);
+        }
+        return list;
+    }
+}
