@@ -1,0 +1,28 @@
+public class Solution {
+    public String ReverseSentence(String str) {
+        if(str==null ||str.length() ==0){
+            return str;
+        }
+        char[] result = str.toCharArray();
+        reverse(result,0, str.length()-1);
+        int loc=0;
+        for(int i=0; i<result.length; i++){
+            if(result[i]==' '){
+                int nextLoc=i;
+                reverse(result, loc, nextLoc-1);
+                loc=nextLoc+1;
+            }
+        }
+        reverse(result, loc, result.length-1);
+        return new String(result);
+    }
+    private void reverse(char[] result, int begin, int end){
+        while(begin<end){
+            char temp = result[begin];
+            result[begin] = result[end];
+            result[end] = temp;
+            begin++;
+            end--;
+        }
+    }
+}
