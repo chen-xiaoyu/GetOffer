@@ -1,0 +1,42 @@
+public class Solution {
+    public boolean isNumeric(char[] str) {
+        if(str.length==0 || str==null){
+            return false;
+        }
+        boolean signal=false; boolean hasE=false; boolean decimal=false;
+        for(int i=0; i<str.length; i++){
+            if((i<str.length-1 && str[i]=='-')|| (i<str.length-1 &&str[i]=='+')){
+                //非第一次出现符号
+                if(signal && str[i-1]!='E' && str[i-1] !='e'){
+                    return false;
+                }else if(!signal && i>0 && str[i-1]!='E' && str[i-1] !='e'){
+                    return false;
+                }
+                signal=true;
+            }else if(str[i]=='E' || str[i]=='e'){
+                if(i==str.length-1){
+                    return false;
+                }
+                if(hasE){
+                    return false;
+                }
+                hasE=true;
+            }else if(str[i]=='.'){
+                if(hasE){
+                    for(;i>=0;i--){
+                        if(str[i]=='E' || str[i]=='e'){
+                            return false;
+                        }
+                    }
+                }
+                if(decimal){
+                    return false;
+                }
+                decimal=true;
+              }else if(str[i]>'9' || str[i]<'0'){
+                return false;
+            }
+        }
+        return true;
+    }
+}
