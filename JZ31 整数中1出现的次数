@@ -1,0 +1,25 @@
+public class Solution {
+    public int NumberOf1Between1AndN_Solution(int n) {
+        int high, low, cur, temp, total=0,i=1;
+        if(n<0){
+            return 0;
+        }
+        high = n;
+        while(high!=0){
+        //2位2位进行比较
+            high = n/(int)Math.pow(10,i);
+            temp = n%(int)Math.pow(10,i);
+            cur = temp/(int)Math.pow(10,i-1);
+            low = temp%(int)Math.pow(10,i-1);
+            if(cur>1){
+                total +=(high+1)*(int)Math.pow(10,i-1);
+            }else if(cur==1){
+                total += high*(int)Math.pow(10,i-1)+low+1;
+            }else{
+                total += high*(int)Math.pow(10,i-1);
+            }
+            i++;
+        }
+        return total;
+    }
+}
