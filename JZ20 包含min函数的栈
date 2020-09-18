@@ -1,0 +1,31 @@
+import java.util.Stack;
+
+public class Solution {
+    Stack<Integer> data = new Stack<Integer>();
+    Stack<Integer> min = new Stack<Integer>();
+    public void push(int node) {
+        data.push(node);
+        if(min.isEmpty()){
+            min.push(node);
+        }
+        if(node<min.peek()){
+            min.push(node);
+            //注意其他相等或小于也要压入
+        }else min.push(min.peek());
+    }
+    
+    public void pop() {
+        data.pop();
+        min.pop();
+    }
+    
+    public int top() {
+        int i = data.peek();
+        return i;
+    }
+    
+    public int min() {
+        int i = min.peek();
+        return i;
+    }
+}
