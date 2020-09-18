@@ -1,0 +1,34 @@
+//不需要额外空间
+    public static Node copyListWithRand2(Node head){
+        if (head == null ){
+            return null;
+        }
+        Node curr = head;
+        //拷贝链表，并且把链表连接起来
+        while(curr != null){
+            Node next = curr.next;
+            Node copy = new Node(curr.val);
+            curr.next = copy;
+            copy.next = next;
+            curr = next;
+        }
+        //指定随即指针
+        curr = head;
+        while(curr != null){
+            Node next = curr.next.next;//原节点的下一个节点
+            Node currCopy = curr.next;//当前的拷贝节点
+            currCopy.random = curr.random!=null?curr.random.next:null;//指定随机指针节点
+            curr = next;//当前节点指向下一个节点
+        }
+        //拆分链表
+        curr = head;
+        Node res = curr.next;//用于返回的拷贝头节点
+        while (curr != null){
+            Node next = curr.next.next;//原节点的下一个节点
+            Node curCopy = curr.next;//拷贝节点
+            curr.next = next;//将原节点指向下一个原节点
+            curCopy.next = next!=null?next.next:null;//拷贝节点的下一个节点指向下一个原节点的下一个节点
+            curr = next;//将当前节点指向下一个原节点
+        }
+        return res;
+    }
